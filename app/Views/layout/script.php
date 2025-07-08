@@ -15,5 +15,13 @@
 <?php
 if ($active == 'pengguna') {
   echo view('pages/pengguna/js');
+} elseif ($active == 'unit') {
+  echo view('pages/unit/js');
+} elseif ($active == 'jenis') {
+  echo view('pages/jenis/js');
+} elseif ($active == 'sifat') {
+  echo view('pages/sifat/js');
+} elseif ($active == 'klasifikasi') {
+  echo view('pages/klasifikasi/js');
 }
 ?>

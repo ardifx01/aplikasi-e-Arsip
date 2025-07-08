@@ -8,7 +8,7 @@ class PenggunaModel extends Model
 {
     protected $table            = 'pengguna';
     protected $primaryKey       = 'id';
-    protected $allowedFields    = ['id', 'nama', 'jenis_kelamin', 'telepon', 'email', 'username', 'password', 'level', 'status_user', 'alamat', 'created_user', 'created_dttm', 'updated_user', 'updated_dttm', 'nullified_user', 'nullified_dttm'];
+    protected $allowedFields    = ['id', 'nama', 'jenis_kelamin', 'telepon', 'email', 'username', 'password', 'level', 'status_user', 'alamat', 'status_cd', 'created_user', 'created_dttm', 'updated_user', 'updated_dttm', 'nullified_user', 'nullified_dttm'];
 
     public function getPengguna()
     {

@@ -15,7 +15,7 @@ class PenggunaController extends BaseController
     {
         $this->m_pengguna = new PenggunaModel();
         $this->session = \Config\Services::session();
-		$this->session->start();
+        $this->session->start();
     }
     public function index()
     {
@@ -63,9 +63,9 @@ class PenggunaController extends BaseController
                                </div>",
                     'col3' => "<div>$status</div>",
                     'col4' => "<div class='text-center d-flex justify-content-center gap-1'>
-                                <button type='button' class='btn btn-sm btn-danger rounded-circle d-flex align-items-center justify-content-center' style='width:32px; height:32px;' title='Reset' onclick='_btnReset(\"$key->id\",\"$key->nama\")'><i class='fa fa-key text-white' style='width: 8px;'></i>
+                                <button type='button' class='btn btn-sm btn-warning rounded-circle d-flex align-items-center justify-content-center' style='width:32px; height:32px;' title='Reset' onclick='_btnReset(\"$key->id\",\"$key->nama\")'><i class='fa fa-key text-white' style='width: 8px;'></i>
                                 </button>
-                                <button type='button' class='btn btn-sm btn-warning rounded-circle d-flex align-items-center justify-content-center' style='width:32px; height:32px;' title='Hapus' onclick='_btnDelete(\"$key->id\",\"$key->nama\")'>
+                                <button type='button' class='btn btn-sm btn-danger rounded-circle d-flex align-items-center justify-content-center' style='width:32px; height:32px;' title='Hapus' onclick='_btnDelete(\"$key->id\",\"$key->nama\")'>
                                     <i class='fa fa-trash text-white' style='width: 8px;'></i>
                                 </button>
                                 <button type='button' class='btn btn-sm btn-info rounded-circle d-flex align-items-center justify-content-center' style='width:32px; height:32px;' title='Edit' onclick='_btnEdit(\"$key->id\",\"$key->nama\")'>
@@ -80,14 +80,14 @@ class PenggunaController extends BaseController
     public function insert_data()
     {
         if ($this->request->isAJAX()) {
-            $nama                    = strtoupper($this->request->getVar('nama'));
-            $jenis_kelamin            = $this->request->getVar('jenis_kelamin');
-            $telepon                = $this->request->getVar('telepon');
-            $email                    = $this->request->getVar('email');
+            $nama                    = ucwords($this->request->getVar('nama'));
+            $jenis_kelamin           = $this->request->getVar('jenis_kelamin');
+            $telepon                 = $this->request->getVar('telepon');
+            $email                   = $this->request->getVar('email');
             $username                = strtolower($this->request->getVar('username'));
-            $level                    = $this->request->getVar('level');
-            $status_user                    = $this->request->getVar('status_user');
-            $alamat                    = $this->request->getVar('alamat');
+            $level                   = $this->request->getVar('level');
+            $status_user             = $this->request->getVar('status_user');
+            $alamat                  = $this->request->getVar('alamat');
             $data = [
                 'nama'                    => $nama,
                 'jenis_kelamin'            => $jenis_kelamin,
@@ -111,17 +111,28 @@ class PenggunaController extends BaseController
             exit('Request Error');
         }
     }
+    public function get_edit()
+    {
+        if ($this->request->isAJAX()) {
+            $id        = $this->request->getVar('id');
+            $data = (array) $this->m_pengguna->get_by_id($id);
+            // print_r($data);
+            echo json_encode($data);
+        } else {
+            exit('Request Error');
+        }
+    }
     public function update_data()
     {
         if ($this->request->isAJAX()) {
             $id                 = $this->request->getVar('id');
-            $nama               = strtoupper($this->request->getVar('nama'));
+            $nama               = ucwords($this->request->getVar('nama'));
             $jenis_kelamin      = $this->request->getVar('jenis_kelamin');
             $telepon            = $this->request->getVar('telepon');
             $email              = $this->request->getVar('email');
             $username           = strtolower($this->request->getVar('username'));
             $level              = $this->request->getVar('level');
-            $status_user              = $this->request->getVar('status_user');
+            $status_user        = $this->request->getVar('status_user');
             $alamat             = $this->request->getVar('alamat');
             $data = [
                 'nama'                => $nama,
@@ -130,7 +141,7 @@ class PenggunaController extends BaseController
                 'email'               => $email,
                 'username'            => $username,
                 'level'               => $level,
-                'status_user'          => $status_user,
+                'status_user'         => $status_user,
                 'alamat'              => $alamat,
                 'updated_user'        => session()->get('id'),
                 'updated_dttm'        => date('Y-m-d H:i:s'),
@@ -173,17 +184,6 @@ class PenggunaController extends BaseController
             $this->m_pengguna->update($id, $data);
             $msg = ['sukses' => 'Data user telah dihapus.'];
             echo json_encode($msg);
-        } else {
-            exit('Request Error');
-        }
-    }
-    public function get_edit()
-    {
-        if ($this->request->isAJAX()) {
-            $id        = $this->request->getVar('id');
-            $data = (array) $this->m_pengguna->get_by_id($id);
-            // print_r($data);
-            echo json_encode($data);
         } else {
             exit('Request Error');
         }

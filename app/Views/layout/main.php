@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Aplikasi e-Arsip</title>
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/css/main.css">
     <!-- Font-icon css-->

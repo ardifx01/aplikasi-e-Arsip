@@ -57,15 +57,22 @@ class LoginController extends BaseController
 
     public function logout()
     {
-        session()->setTempdata('id');
-        session()->setTempdata('nama');
-        session()->setTempdata('jenis_kelamin');
-        session()->setTempdata('telepon');
-        session()->setTempdata('username');
-        session()->setTempdata('level');
-        session()->setTempdata('status_user');
-        session()->setTempdata('alamat');
-        session()->setFlashdata('sukses', 'anda berhasil keluar ...');
+        // Simpan flashdata terlebih dahulu
+        session()->setFlashdata('sukses', 'Anda berhasil keluar ...');
+
+        // Lalu hapus semua data session, kecuali flashdata
+        session()->remove([
+            'id',
+            'nama',
+            'jenis_kelamin',
+            'telepon',
+            'username',
+            'level',
+            'status_user',
+            'alamat'
+        ]);
+
+        // Redirect ke halaman login
         return redirect()->to(base_url('/login'));
     }
 }
