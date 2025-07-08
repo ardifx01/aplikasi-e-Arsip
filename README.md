@@ -22,6 +22,7 @@ corresponding to the latest version of the framework.
 
 Vali is a free, modular and easy to customize admin theme built using [Bootstrap 4](https://getbootstrap.com), [SASS](http://sass-lang.com) and [Pug.js](https://pugjs.org).
 
+
 <p align="center">
   <a href="https://www.linkedin.com/in/ahmad-redho-rivai-038ba2136/" target="_blank"><img src="https://img.shields.io/badge/Ahmad%20Redho%20Rivai-LinkedIn-blue.svg" alt="Discord"/></a>
 </p>
