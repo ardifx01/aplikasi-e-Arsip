@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login - Vali Admin</title>
+    <title>Login - e-Arsip</title>
 
     <!-- Main CSS -->
     <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/css/main.css">
@@ -22,12 +22,13 @@
 
     <section class="login-content">
         <div class="logo">
-            <h1>Vali</h1>
+            <h1 class="text-center">Selamat Datang</h1>
+            <h2 class="text-center">di Aplikasi e-Arsip</h2>
         </div>
         <div class="login-box">
             <form class="login-form" id="login_form" method="POST">
                 <?= csrf_field(); ?>
-                <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i> SIGN IN</h3>
+                <h3 class="login-head text-center"><i class="fa fa-lg fa-fw fa-user"></i> Login</h3>
                 <div class="form-group">
                     <label class="control-label">USERNAME</label>
                     <input class="form-control" type="text" placeholder="Masukkan username" id="username" name="username" required autofocus>

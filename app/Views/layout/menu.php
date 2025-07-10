@@ -32,8 +32,8 @@
                 <li><a class="treeview-item <?= ($active == 'klasifikasi') ? 'active' : '' ?>" href="<?= base_url('/klasifikasi') ?>"><i class="icon fa fa-circle-o"></i>Data Klasifikasi</a></li>
             </ul>
         </li>
-        <li><a class="app-menu__item" href="javascript:void(0)"><i class="app-menu__icon fa fa-envelope-o"></i><span class="app-menu__label">Surat Masuk</span></a></li>
-        <li><a class="app-menu__item" href="javascript:void(0)"><i class="app-menu__icon fa fa fa-envelope"></i><span class="app-menu__label">Surat Keluar</span></a></li>
+        <li><a class="app-menu__item <?= ($active == 'suratmasuk') ? 'active' : '' ?>" href="<?= base_url('/suratmasuk') ?>"><i class="app-menu__icon fa fa-envelope-o"></i><span class="app-menu__label">Surat Masuk</span></a></li>
+        <li><a class="app-menu__item <?= ($active == 'suratkeluar') ? 'active' : '' ?>" href="<?= base_url('/suratkeluar') ?>"><i class="app-menu__icon fa fa fa-envelope"></i><span class="app-menu__label">Surat Keluar</span></a></li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-list-alt"></i><span class="app-menu__label">Laporan</span><i class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
                 <li><a class="treeview-item" href="javascript:void(0)"><i class="icon fa fa-circle-o"></i> Rekapitulasi Surat</a></li>

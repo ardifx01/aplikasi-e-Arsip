@@ -23,5 +23,9 @@ if ($active == 'pengguna') {
   echo view('pages/sifat/js');
 } elseif ($active == 'klasifikasi') {
   echo view('pages/klasifikasi/js');
+} elseif ($active == 'suratmasuk') {
+  echo view('pages/suratmasuk/js');
+} elseif ($active == 'suratkeluar') {
+  echo view('pages/suratkeluar/js');
 }
 ?>

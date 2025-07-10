@@ -48,3 +48,17 @@ $routes->post('klasifikasi/insert_data', 'KlasifikasiController::insert_data');
 $routes->post('klasifikasi/del_data', 'KlasifikasiController::del_data');
 $routes->post('klasifikasi/update_data', 'KlasifikasiController::update_data');
 $routes->get('klasifikasi/get_edit', 'KlasifikasiController::get_edit');
+// surat masuk
+$routes->get('/suratmasuk', 'SuratMasukController::index');
+$routes->get('suratmasuk/getData', 'SuratMasukController::getData');
+$routes->post('suratmasuk/insert_data', 'SuratMasukController::insert_data');
+$routes->post('suratmasuk/del_data', 'SuratMasukController::del_data');
+$routes->post('suratmasuk/update_data', 'SuratMasukController::update_data');
+$routes->get('suratmasuk/get_edit', 'SuratMasukController::get_edit');
+// surat keluar
+$routes->get('/suratkeluar', 'SuratKeluarController::index');
+$routes->get('suratkeluar/getData', 'SuratKeluarController::getData');
+$routes->post('suratkeluar/insert_data', 'SuratKeluarController::insert_data');
+$routes->post('suratkeluar/del_data', 'SuratKeluarController::del_data');
+$routes->post('suratkeluar/update_data', 'SuratKeluarController::update_data');
+$routes->get('suratkeluar/get_edit', 'SuratKeluarController::get_edit');

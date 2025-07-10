@@ -124,3 +124,8 @@ _modules/*
 
 /results/
 /phpunit*.xml
+public/uploads/surat/1752062109_c1d508de91d5b967c703.pdf
+public/uploads/surat/1752103929_1480dc0802fed34a95c4.pdf
+.gitignore
+public/uploads/surat/1752105782_405c46ea3d9e1153cfe2.pdf
+public/uploads/surat/1752105912_d28b1a563850fcda36c2.pdf
