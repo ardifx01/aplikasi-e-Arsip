@@ -27,5 +27,7 @@ if ($active == 'pengguna') {
   echo view('pages/suratmasuk/js');
 } elseif ($active == 'suratkeluar') {
   echo view('pages/suratkeluar/js');
+} elseif ($active == 'laporan_suratmasuk' || $active == 'laporan_suratkeluar') {
+  echo view('pages/laporan/js');
 }
 ?>

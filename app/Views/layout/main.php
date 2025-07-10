@@ -19,6 +19,7 @@
     <?= $this->include('layout/menu') ?>
     <!-- content -->
     <?= $this->renderSection('content') ?>
+
     <?= $this->include('layout/script') ?>
 </body>
 

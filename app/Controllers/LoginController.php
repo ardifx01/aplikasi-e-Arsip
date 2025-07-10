@@ -38,6 +38,7 @@ class LoginController extends BaseController
                         'id' => $cek['id'],
                         'nama' => $cek['nama'],
                         'jenis_kelamin' => $cek['jenis_kelamin'],
+                        'email' => $cek['email'],
                         'telepon' => $cek['telepon'],
                         'username' => $cek['username'],
                         'level' => $cek['level'],

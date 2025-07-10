@@ -52,11 +52,11 @@ class PenggunaModel extends Model
         $cek = $this->db->table('pengguna')
             ->where('username', $data['username'])
             ->where('status_cd', 'normal')
-            ->where('id !=', $id) // <<< abaikan record yang sedang diedit
+            ->where('id !=', $id)
             ->get()
             ->getResult();
         if (count($cek) > 0) {
-            return false; // kode_jurusan sudah digunakan oleh record lain
+            return false;
         }
 
         // Update data
@@ -72,4 +72,14 @@ class PenggunaModel extends Model
 			->get()
 			->getRowArray(); // ✅ langsung mengembalikan array, bukan stdClass
 	}
+    public function getUserById($id)
+    {
+        return $this->where('id', $id)->first();
+    }
+    public function updatePasswordOnly($id, $data)
+{
+    return $this->db->table('pengguna')
+        ->where('id', $id)
+        ->update($data);
+}
 }

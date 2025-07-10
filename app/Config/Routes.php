@@ -62,3 +62,11 @@ $routes->post('suratkeluar/insert_data', 'SuratKeluarController::insert_data');
 $routes->post('suratkeluar/del_data', 'SuratKeluarController::del_data');
 $routes->post('suratkeluar/update_data', 'SuratKeluarController::update_data');
 $routes->get('suratkeluar/get_edit', 'SuratKeluarController::get_edit');
+//laporan
+$routes->get('laporan/suratmasuk', 'LaporanController::suratMasuk');
+$routes->get('laporan/suratkeluar', 'LaporanController::suratKeluar');
+$routes->get('laporan/getSuratMasukByUnit', 'LaporanController::getSuratMasukByUnit');
+$routes->get('laporan/getSuratKeluarByUnit', 'LaporanController::getSuratKeluarByUnit');
+//akun
+$routes->get('/akun', 'AkunController::index');
+$routes->post('akun/updatePassword', 'AkunController::updatePassword');
