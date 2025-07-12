@@ -12,35 +12,27 @@
         </ul>
     </div>
     <div class="row">
-        <div class="col-md-6 col-lg-3">
-            <div class="widget-small primary coloured-icon"><i class="icon fa fa-users fa-3x"></i>
-                <div class="info">
-                    <h4>Users</h4>
-                    <p><b>5</b></p>
+        <div class="col-md-4">
+            <div class="card bg-primary text-white">
+                <div class="card-body text-center">
+                    <h5>Total Pengguna</h5>
+                    <h2><?= $jumlahPengguna ?></h2>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-lg-3">
-            <div class="widget-small info coloured-icon"><i class="icon fa fa-thumbs-o-up fa-3x"></i>
-                <div class="info">
-                    <h4>Likes</h4>
-                    <p><b>25</b></p>
+        <div class="col-md-4">
+            <div class="card bg-success text-white">
+                <div class="card-body text-center">
+                    <h5>Surat Masuk</h5>
+                    <h2><?= $jumlahSuratMasuk ?></h2>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-lg-3">
-            <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
-                <div class="info">
-                    <h4>Uploades</h4>
-                    <p><b>10</b></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-            <div class="widget-small danger coloured-icon"><i class="icon fa fa-star fa-3x"></i>
-                <div class="info">
-                    <h4>Stars</h4>
-                    <p><b>500</b></p>
+        <div class="col-md-4">
+            <div class="card bg-info text-white">
+                <div class="card-body text-center">
+                    <h5>Surat Keluar</h5>
+                    <h2><?= $jumlahSuratKeluar ?></h2>
                 </div>
             </div>
         </div>

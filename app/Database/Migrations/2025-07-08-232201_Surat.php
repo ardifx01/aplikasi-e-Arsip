@@ -57,6 +57,21 @@ class Surat extends Migration
                 'unsigned'   => true,
                 'null'       => true,
             ],
+            'id_sekretaris' => [
+                'type'       => 'INT',
+                'unsigned'   => true,
+                'null'       => true,
+            ],
+            'id_kepala' => [
+                'type'       => 'INT',
+                'unsigned'   => true,
+                'null'       => true,
+            ],
+            'status'      => [
+                'type'       => 'ENUM',
+                'constraint' => ['pengajuan', 'proses', 'selesai'],
+                'default'     => 'normal',
+            ],
             'perihal'        => [
                 'type'       => 'TEXT',
                 'null'       => true,

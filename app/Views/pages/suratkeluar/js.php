@@ -1,16 +1,23 @@
 <script type="text/javascript">
     $(function() {
-        _getSuratKeluar();
-        // Saat file diubah, tampilkan nama file di label
+        const currentPage = "<?= $active ?>";
+
+        if (currentPage === 'pengajuansuratkeluar') {
+            _getPengajuanSuratKeluar();
+        } else if (currentPage === 'verifikasisuratkeluar') {
+            _getVerifikasiSuratKeluar();
+        }
+
+        // Saat file input diubah
         $('#file_surat').on('change', function() {
             var fileName = $(this).val().split('\\').pop();
             $(this).next('.custom-file-label').html(fileName);
         });
-
     });
-
-    function _getSuratKeluar() {
+    // fungsi getdata pengajuan surat keluar
+    function _getPengajuanSuratKeluar() {
         $("#viewTable").DataTable({
+            destroy: true,
             processing: true,
             responsive: true,
             lengthChange: false,
@@ -18,32 +25,183 @@
             language: {
                 searchPlaceholder: 'Cari...',
                 sSearch: '',
-                lengthMenu: '_MENU_',
                 emptyTable: 'Tidak ada data'
             },
-            "order": [],
-            "columnDefs": [{
-                "targets": [0],
-                "orderable": false
-            }, ],
-            "columns": [{
-                    "data": "col1"
+            order: [],
+            columnDefs: [{
+                targets: [0],
+                orderable: false
+            }],
+            columns: [{
+                    data: "col1"
                 },
                 {
-                    "data": "col2"
+                    data: "col2"
                 },
                 {
-                    "data": "col3"
-                },
+                    data: "col3"
+                }
             ],
-            "ajax": {
-                "url": "<?= site_url('suratkeluar/getData') ?>",
-                "type": "GET",
-                "cache": false,
-            },
+            ajax: {
+                url: "<?= site_url('pengajuansuratkeluar/getData') ?>",
+                type: "GET",
+                cache: false
+            }
         });
     }
 
+    function _getPengajuanSuratMasuk() {
+        $("#viewTable").DataTable({
+            destroy: true,
+            processing: true,
+            responsive: true,
+            lengthChange: false,
+            autoWidth: false,
+            language: {
+                searchPlaceholder: 'Cari...',
+                sSearch: '',
+                emptyTable: 'Tidak ada data'
+            },
+            order: [],
+            columnDefs: [{
+                targets: [0],
+                orderable: false
+            }],
+            columns: [{
+                    data: "col1"
+                },
+                {
+                    data: "col2"
+                },
+                {
+                    data: "col3"
+                }
+            ],
+            ajax: {
+                url: "<?= site_url('pengajuansuratkeluar/getData') ?>",
+                type: "GET",
+                cache: false
+            }
+        });
+    }
+
+    function _btnVerifikasi(id) {
+        Swal.fire({
+            title: 'Verifikasi Surat?',
+            text: "Surat akan diteruskan ke kepala inspektur.",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, verifikasi!',
+            cancelButtonText: 'Batal',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "<?= base_url('pengajuansuratkeluar/verifikasiSurat') ?>",
+                    type: "POST",
+                    data: {
+                        id_surat: id
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.status === 'ok') {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Berhasil!',
+                                text: response.message,
+                                timer: 1500,
+                                showConfirmButton: false
+                            });
+
+                            let table = $('#viewTable').DataTable();
+                            table.row('#row_' + id).remove().draw(false);
+                        } else {
+                            Swal.fire('Gagal', response.message, 'error');
+                        }
+                    },
+                    error: function() {
+                        Swal.fire('Error', 'Terjadi kesalahan saat verifikasi.', 'error');
+                    }
+                });
+            }
+        });
+    }
+    // fungsi getdata verifikasi surat keluar
+    function _getVerifikasiSuratKeluar() {
+        $("#viewTable").DataTable({
+            destroy: true,
+            processing: true,
+            responsive: true,
+            lengthChange: false,
+            autoWidth: false,
+            language: {
+                searchPlaceholder: 'Cari...',
+                sSearch: '',
+                emptyTable: 'Tidak ada data'
+            },
+            order: [],
+            columnDefs: [{
+                targets: [0],
+                orderable: false
+            }],
+            columns: [{
+                    data: "col1"
+                },
+                {
+                    data: "col2"
+                },
+                {
+                    data: "col3"
+                }
+            ],
+            ajax: {
+                url: "<?= site_url('verifikasisuratkeluar/getData') ?>",
+                type: "GET",
+                cache: false
+            }
+        });
+    }
+
+    function _btnSetujui(id) {
+        Swal.fire({
+            title: 'Setujui Surat?',
+            text: "Status surat akan menjadi 'setuju'.",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, setujui!',
+            cancelButtonText: 'Batal',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "<?= base_url('verifikasisuratkeluar/setujuiSurat') ?>",
+                    type: "POST",
+                    data: {
+                        id_surat: id
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.status === 'ok') {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Berhasil!',
+                                text: response.message,
+                                timer: 1500,
+                                showConfirmButton: false
+                            });
+
+                            $('#viewTable').DataTable().ajax.reload(null, false);
+                        } else {
+                            Swal.fire('Gagal', response.message, 'error');
+                        }
+                    },
+                    error: function() {
+                        Swal.fire('Error', 'Terjadi kesalahan saat menyetujui.', 'error');
+                    }
+                });
+            }
+        });
+    }
     function _tambahData() {
         method = 'save';
         $('.select2').select2({
@@ -84,6 +242,10 @@
             },
             {
                 id: "id_klasifikasi",
+                required: true
+            },
+            {
+                id: "id_sekretaris",
                 required: true
             },
             {
@@ -204,6 +366,7 @@
                 $('[name=id_jenis]').val(data.id_jenis).trigger('change');
                 $('[name=id_sifat]').val(data.id_sifat).trigger('change');
                 $('[name=id_klasifikasi]').val(data.id_klasifikasi).trigger('change');
+                $('[name=id_sekretaris]').val(data.id_sekretaris).trigger('change');
 
                 // Preview file PDF jika ada
                 if (data.file_surat) {
@@ -224,6 +387,7 @@
             }
         });
     }
+
     function _btnDelete(id, no_surat) {
         Swal.fire({
             title: `Hapus Data`,

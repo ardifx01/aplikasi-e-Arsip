@@ -15,7 +15,10 @@
         <div class="col-md-12">
             <div class="tile">
                 <div class="tile-body">
-                    <a class="btn btn-rounded btn-primary mb-3" href="javascript:void(0)" onclick="_tambahData()">Tambah Data</a>
+                    <?php if (in_array(session()->get('level'), ['admin', 'user'])) : ?>
+                        <a class="btn btn-rounded btn-primary mb-3" href="javascript:void(0)" onclick="_tambahData()">Tambah Data</a>
+                    <?php endif; ?>
+
                     <?= form_open() ?>
                     <table class="table table-hover table-bordered" id="viewTable">
                         <thead>
@@ -111,7 +114,17 @@
                                 <?php endforeach; ?>
                             </select>
                         </div>
-
+                        <div class="form-group">
+                            <label for="id_pengguna">Tujuan Disposisi: <span class="text-danger">*</span></label>
+                            <select class="form-control select2" id="id_sekretaris" name="id_sekretaris" style="width: 100%;">
+                                <option disabled selected>-- Pilih Disposisi Surat --</option>
+                                <?php foreach ($pengguna as $k): ?>
+                                    <option value="<?= $k->id ?>" <?= old('id_pengguna') == $k->id ? 'selected' : '' ?>>
+                                        <?= esc($k->nama) ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label for="perihal">Perihal: <span class="text-danger">*</span></label>
                             <textarea rows="3" class="form-control" id="perihal" name="perihal" placeholder="Masukkan Perihal"><?= old('perihal') ?></textarea>

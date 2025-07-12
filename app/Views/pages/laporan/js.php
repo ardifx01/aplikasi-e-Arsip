@@ -17,6 +17,11 @@
 
                     if (response.data.length > 0) {
                         response.data.forEach((item, index) => {
+                            const fileUrl = `<?= base_url('uploads/surat/') ?>/${item.file_surat}`;
+                            const fileButton = item.file_surat ?
+                                `<a href="${fileUrl}" target="_blank" class="btn btn-sm btn-outline-info">
+                            <i class="fa fa-file-pdf-o"></i> PDF</a>` :
+                                `<span class="text-muted">-</span>`;
                             tableBody.append(`
                                 <tr>
                                     <td>${index + 1}</td>
@@ -24,6 +29,8 @@
                                     <td>${item.koresponden}</td>
                                     <td>${item.tgl_surat}</td>
                                     <td>${item.perihal}</td>
+                                    <td>${fileButton}</td>
+                                    <td>${item.status}</td>
                                 </tr>
                             `);
                         });
@@ -50,6 +57,11 @@
 
                     if (response.data.length > 0) {
                         response.data.forEach((item, index) => {
+                            const fileUrl = `<?= base_url('uploads/surat/') ?>/${item.file_surat}`;
+                            const fileButton = item.file_surat ?
+                                `<a href="${fileUrl}" target="_blank" class="btn btn-sm btn-outline-info">
+                            <i class="fa fa-file-pdf-o"></i> PDF</a>` :
+                                `<span class="text-muted">-</span>`;
                             tableBody.append(`
                                 <tr>
                                     <td>${index + 1}</td>
@@ -57,6 +69,8 @@
                                     <td>${item.koresponden}</td>
                                     <td>${item.tgl_surat}</td>
                                     <td>${item.perihal}</td>
+                                    <td>${fileButton}</td>
+                                    <td>${item.status}</td>
                                 </tr>
                             `);
                         });

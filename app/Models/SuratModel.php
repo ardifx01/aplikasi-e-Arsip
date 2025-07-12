@@ -8,27 +8,54 @@ class SuratModel extends Model
 {
     protected $table            = 'surat';
     protected $primaryKey       = 'id';
-    protected $allowedFields    = ['id', 'tipe', 'trackID', 'koresponden', 'no_surat', 'tgl_surat', 'id_unit', 'id_jenis', 'id_sifat', 'id_klasifikasi', 'perihal', 'keterangan', 'file_surat', 'status_cd', 'created_user', 'created_dttm', 'updated_user', 'updated_dttm', 'nullified_user', 'nullified_dttm'];
+    protected $allowedFields    = ['id', 'tipe', 'trackID', 'koresponden', 'no_surat', 'tgl_surat', 'id_unit', 'id_jenis', 'id_sifat', 'id_klasifikasi', 'id_sekretaris', 'id_kepala', 'status', 'perihal', 'keterangan', 'file_surat', 'status_cd', 'created_user', 'created_dttm', 'updated_user', 'updated_dttm', 'nullified_user', 'nullified_dttm'];
 
     public function getSuratMasuk()
     {
-        $query = $this->db->table('surat');
-        $query->select('*');
-        $query->where('tipe', 'suratmasuk');
-        $query->where('status_cd', 'normal');
-        $query->orderBy('id', 'DESC');
-        $return = $query->get();
-        return $return->getResult();
+        $query = $this->db->table('surat s');
+        $query->select('s.*, p.nama as nama_kepala');
+        $query->join('pengguna p', 'p.id = s.id_kepala', 'left');
+        $query->where('s.tipe', 'suratmasuk');
+        $query->where('s.status', 'pengajuan');
+        $query->where('s.status_cd', 'normal');
+        $query->orderBy('s.id', 'DESC');
+        return $query->get()->getResult();
     }
+
+    public function getVerifikasiSuratMasuk()
+    {
+        $query = $this->db->table('surat s');
+        $query->select('s.*, p.nama as nama_kepala');
+        $query->join('pengguna p', 'p.id = s.id_sekretaris', 'left');
+        $query->where('s.tipe', 'suratmasuk');
+        $query->whereIn('s.status', ['proses', 'setuju']);
+        $query->where('s.status_cd', 'normal');
+        $query->orderBy('s.id', 'DESC');
+        return $query->get()->getResult();
+    }
+    
     public function getSuratKeluar()
     {
-        $query = $this->db->table('surat');
-        $query->select('*');
-        $query->where('tipe', 'suratkeluar');
-        $query->where('status_cd', 'normal');
-        $query->orderBy('id', 'DESC');
-        $return = $query->get();
-        return $return->getResult();
+        $query = $this->db->table('surat s');
+        $query->select('s.*, p.nama as nama_kepala');
+        $query->join('pengguna p', 'p.id = s.id_kepala', 'left');
+        $query->where('s.tipe', 'suratkeluar');
+        $query->where('s.status', 'pengajuan');
+        $query->where('s.status_cd', 'normal');
+        $query->orderBy('s.id', 'DESC');
+        return $query->get()->getResult();
+    }
+
+    public function getVerifikasiSuratKeluar()
+    {
+        $query = $this->db->table('surat s');
+        $query->select('s.*, p.nama as nama_kepala');
+        $query->join('pengguna p', 'p.id = s.id_sekretaris', 'left');
+        $query->where('s.tipe', 'suratkeluar');
+        $query->whereIn('s.status', ['proses', 'setuju']);
+        $query->where('s.status_cd', 'normal');
+        $query->orderBy('s.id', 'DESC');
+        return $query->get()->getResult();
     }
     public function cekNoSurat($no_surat)
     {

@@ -83,9 +83,10 @@
                                 <option disabled selected>-- Pilih Level Akses --</option>
                                 <option value="user">User</option>
                                 <option value="admin">Admin</option>
+                                <option value="verifikasi">Sekretaris</option>
+                                <option value="Kepala">Inspektur</option>
                             </select>
                         </div>
-
                         <div class="form-group">
                             <label>Status User: <span class="text-danger">*</span></label>
                             <select class="form-control select2" id="status_user" name="status_user" style="width: 100%;">

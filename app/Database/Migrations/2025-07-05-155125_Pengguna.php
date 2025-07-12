@@ -41,7 +41,7 @@ class Pengguna extends Migration
             ],
             'level' => [
                 'type'       => 'ENUM',
-                'constraint' => ['user', 'admin'],
+                'constraint' => ['user', 'admin', 'verifikasi', 'kepala'],
             ],
             'status_user'     => [
                 'type'       => 'ENUM',

@@ -49,19 +49,34 @@ $routes->post('klasifikasi/del_data', 'KlasifikasiController::del_data');
 $routes->post('klasifikasi/update_data', 'KlasifikasiController::update_data');
 $routes->get('klasifikasi/get_edit', 'KlasifikasiController::get_edit');
 // surat masuk
-$routes->get('/suratmasuk', 'SuratMasukController::index');
-$routes->get('suratmasuk/getData', 'SuratMasukController::getData');
-$routes->post('suratmasuk/insert_data', 'SuratMasukController::insert_data');
+//pegajuan surat masuk
+$routes->get('/pengajuansuratmasuk', 'SuratMasukController::index');
+$routes->get('/pengajuansuratmasuk/getData', 'SuratMasukController::getData');
+$routes->post('/pengajuansuratmasuk/verifikasiSurat', 'SuratMasukController::verifikasiSurat');
+// verifikasi surat masuk
+$routes->get('/verifikasisuratmasuk', 'SuratMasukController::verifikasiView');
+$routes->get('verifikasisuratmasuk/getData', 'SuratMasukController::getDataVerifikasi');
+$routes->post('verifikasisuratmasuk/setujuiSurat', 'SuratMasukController::setujuiSurat');
+// CUD
+$routes->post('suratmasukpengajuan/insert_data', 'SuratMasukController::insert_data');
 $routes->post('suratmasuk/del_data', 'SuratMasukController::del_data');
 $routes->post('suratmasuk/update_data', 'SuratMasukController::update_data');
 $routes->get('suratmasuk/get_edit', 'SuratMasukController::get_edit');
+$routes->post('suratmasukpengajuan/update_data', 'SuratMasukController::update_data');
 // surat keluar
-$routes->get('/suratkeluar', 'SuratKeluarController::index');
-$routes->get('suratkeluar/getData', 'SuratKeluarController::getData');
-$routes->post('suratkeluar/insert_data', 'SuratKeluarController::insert_data');
-$routes->post('suratkeluar/del_data', 'SuratKeluarController::del_data');
-$routes->post('suratkeluar/update_data', 'SuratKeluarController::update_data');
-$routes->get('suratkeluar/get_edit', 'SuratKeluarController::get_edit');
+$routes->get('/pengajuansuratkeluar', 'SuratKeluarController::index');
+$routes->get('/pengajuansuratkeluar/getData', 'SuratKeluarController::getData');
+$routes->post('/pengajuansuratkeluar/verifikasiSurat', 'SuratKeluarController::verifikasiSurat');
+// verifikasi surat keluar
+$routes->get('/verifikasisuratkeluar', 'SuratKeluarController::verifikasiView');
+$routes->get('verifikasisuratkeluar/getData', 'SuratKeluarController::getDataVerifikasi');
+$routes->post('verifikasisuratkeluar/setujuiSurat', 'SuratKeluarController::setujuiSurat');
+// CUD
+$routes->post('suratkeluarkpengajuan/insert_data', 'SuratMasukController::insert_data');
+$routes->post('suratkeluar/del_data', 'SuratMasukController::del_data');
+$routes->post('suratkeluar/update_data', 'SuratMasukController::update_data');
+$routes->get('suratkeluar/get_edit', 'SuratMasukController::get_edit');
+$routes->post('suratkeluarpengajuan/update_data', 'SuratMasukController::update_data');
 //laporan
 $routes->get('laporan/suratmasuk', 'LaporanController::suratMasuk');
 $routes->get('laporan/suratkeluar', 'LaporanController::suratKeluar');

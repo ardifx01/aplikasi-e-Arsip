@@ -65,21 +65,30 @@ class PenggunaModel extends Model
             ->update($data);
     }
     public function get_by_id($id)
-	{
-		return $this->db->table('pengguna')
-			->select('*')
-			->where('id', $id)
-			->get()
-			->getRowArray(); // ✅ langsung mengembalikan array, bukan stdClass
-	}
+    {
+        return $this->db->table('pengguna')
+            ->select('*')
+            ->where('id', $id)
+            ->get()
+            ->getRowArray(); // ✅ langsung mengembalikan array, bukan stdClass
+    }
     public function getUserById($id)
     {
         return $this->where('id', $id)->first();
     }
     public function updatePasswordOnly($id, $data)
-{
-    return $this->db->table('pengguna')
-        ->where('id', $id)
-        ->update($data);
-}
+    {
+        return $this->db->table('pengguna')
+            ->where('id', $id)
+            ->update($data);
+    }
+    public function getSekretaris()
+    {
+        $query = $this->db->table('pengguna');
+        $query->select('*');
+        $query->where('status_cd', 'normal');
+        $query->where('level', 'verifikasi'); // ← filter berdasarkan level
+        $query->orderBy('id', 'DESC');
+        return $query->get()->getResult();
+    }
 }

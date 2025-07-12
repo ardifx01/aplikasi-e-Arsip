@@ -36,6 +36,8 @@
                                 <th>Koresponden</th>
                                 <th>Tanggal</th>
                                 <th>Perihal</th>
+                                <th>Lampiran</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody></tbody>

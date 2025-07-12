@@ -16,13 +16,19 @@ class DashboardController extends BaseController
     }
     public function index()
     {
-        if (session()->get('username') == '') {
-            session()->setFlashdata('error', 'Anda belum login! Silahkan login terlebih dahulu');
-            return redirect()->to(base_url('/login'));
-        }
+        $mPengguna = new \App\Models\PenggunaModel();
+        $mSurat = new \App\Models\SuratModel();
+
+        $jumlahPengguna = $mPengguna->where('status_cd', 'normal')->countAllResults();
+        $jumlahSuratMasuk = $mSurat->where('status_cd', 'normal')->where('tipe', 'suratmasuk')->countAllResults();
+        $jumlahSuratKeluar = $mSurat->where('status_cd', 'normal')->where('tipe', 'suratkeluar')->countAllResults();
+
         $data = [
             'title' => 'Dashboard',
             'active' => 'dashboard',
+            'jumlahPengguna' => $jumlahPengguna,
+            'jumlahSuratMasuk' => $jumlahSuratMasuk,
+            'jumlahSuratKeluar' => $jumlahSuratKeluar,
         ];
         return view('pages/dashboard/index', $data);
     }
