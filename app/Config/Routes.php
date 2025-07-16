@@ -72,11 +72,11 @@ $routes->get('/verifikasisuratkeluar', 'SuratKeluarController::verifikasiView');
 $routes->get('verifikasisuratkeluar/getData', 'SuratKeluarController::getDataVerifikasi');
 $routes->post('verifikasisuratkeluar/setujuiSurat', 'SuratKeluarController::setujuiSurat');
 // CUD
-$routes->post('suratkeluarkpengajuan/insert_data', 'SuratMasukController::insert_data');
-$routes->post('suratkeluar/del_data', 'SuratMasukController::del_data');
-$routes->post('suratkeluar/update_data', 'SuratMasukController::update_data');
-$routes->get('suratkeluar/get_edit', 'SuratMasukController::get_edit');
-$routes->post('suratkeluarpengajuan/update_data', 'SuratMasukController::update_data');
+$routes->post('suratkeluarpengajuan/insert_data', 'SuratKeluarController::insert_data');
+$routes->post('suratkeluar/del_data', 'SuratKeluarController::del_data');
+$routes->post('suratkeluar/update_data', 'SuratKeluarController::update_data');
+$routes->get('suratkeluar/get_edit', 'SuratKeluarController::get_edit');
+$routes->post('suratkeluarpengajuan/update_data', 'SuratKeluarController::update_data');
 //laporan
 $routes->get('laporan/suratmasuk', 'LaporanController::suratMasuk');
 $routes->get('laporan/suratkeluar', 'LaporanController::suratKeluar');

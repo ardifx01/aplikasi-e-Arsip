@@ -50,7 +50,7 @@
         });
     }
 
-    function _getPengajuanSuratMasuk() {
+    function _getPengajuanSuratKeluar() {
         $("#viewTable").DataTable({
             destroy: true,
             processing: true,
@@ -213,8 +213,9 @@
 
     function _simpanData() {
         const url = method === "save" ?
-            "<?= site_url('suratkeluar/insert_data') ?>" :
-            "<?= site_url('suratkeluar/update_data') ?>";
+            "<?= site_url('suratkeluarpengajuan/insert_data') ?>" :
+            "<?= site_url('suratkeluarpengajuan/update_data') ?>";
+            
 
         const fields = [{
                 id: "koresponden",
