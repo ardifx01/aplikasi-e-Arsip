@@ -53,6 +53,7 @@ $routes->get('klasifikasi/get_edit', 'KlasifikasiController::get_edit');
 $routes->get('/pengajuansuratmasuk', 'SuratMasukController::index');
 $routes->get('/pengajuansuratmasuk/getData', 'SuratMasukController::getData');
 $routes->post('/pengajuansuratmasuk/verifikasiSurat', 'SuratMasukController::verifikasiSurat');
+$routes->get('pengajuansuratmasuk/getNotifications', 'SuratMasukController::getNotifications');
 // verifikasi surat masuk
 $routes->get('/verifikasisuratmasuk', 'SuratMasukController::verifikasiView');
 $routes->get('verifikasisuratmasuk/getData', 'SuratMasukController::getDataVerifikasi');
@@ -67,6 +68,7 @@ $routes->post('suratmasukpengajuan/update_data', 'SuratMasukController::update_d
 $routes->get('/pengajuansuratkeluar', 'SuratKeluarController::index');
 $routes->get('/pengajuansuratkeluar/getData', 'SuratKeluarController::getData');
 $routes->post('/pengajuansuratkeluar/verifikasiSurat', 'SuratKeluarController::verifikasiSurat');
+$routes->get('pengajuansuratkeluar/getNotifications', 'SuratKeluarController::getNotifications');
 // verifikasi surat keluar
 $routes->get('/verifikasisuratkeluar', 'SuratKeluarController::verifikasiView');
 $routes->get('verifikasisuratkeluar/getData', 'SuratKeluarController::getDataVerifikasi');

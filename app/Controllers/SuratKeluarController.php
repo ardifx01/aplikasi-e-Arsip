@@ -402,4 +402,41 @@ class SuratKeluarController extends BaseController
             exit('Request Error');
         }
     }
+
+    public function getNotifications()
+    {
+        $level = session()->get('level');
+        $notifications = [];
+
+        if ($level === 'verifikasi') {
+            // Surat keluar yang belum diverifikasi (status pengajuan)
+            $count = $this->m_surat->where(['tipe' => 'suratkeluar', 'status' => 'pengajuan', 'status_cd' => 'normal'])->countAllResults();
+            if ($count > 0) {
+                $notifications[] = [
+                    'icon' => 'fa-envelope',
+                    'color' => 'primary',
+                    'message' => "Ada $count surat keluar menunggu verifikasi",
+                    'meta' => date('H:i') . ' WIB',
+                    'url' => base_url('pengajuansuratkeluar')
+                ];
+            }
+        } elseif ($level === 'kepala') {
+            // Surat keluar yang sudah diverifikasi tapi belum disetujui kepala
+            $count = $this->m_surat->where(['tipe' => 'suratkeluar', 'status' => 'proses', 'status_cd' => 'normal'])->countAllResults();
+            if ($count > 0) {
+                $notifications[] = [
+                    'icon' => 'fa-envelope-open',
+                    'color' => 'success',
+                    'message' => "Ada $count surat keluar menunggu persetujuan",
+                    'meta' => date('H:i') . ' WIB',
+                    'url' => base_url('verifikasisuratkeluar')
+                ];
+            }
+        }
+
+        return $this->response->setJSON([
+            'count' => count($notifications),
+            'notifications' => $notifications
+        ]);
+    }
 }

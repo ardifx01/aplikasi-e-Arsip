@@ -404,9 +404,52 @@ class SuratMasukController extends BaseController
         }
     }
 
+    public function getNotifications()
+    {
+        $level = session()->get('level');
+        $notifications = [];
 
+        if ($level === 'verifikasi') {
+            // Surat masuk yang belum diverifikasi (belum ada id_kepala)
+            $count = $this->m_surat
+                ->where([
+                    'status' => 'pengajuan',
+                    'status_cd' => 'normal',
+                    'tipe' => 'suratmasuk' // tambahkan filter tipe
+                ])
+                ->countAllResults();
+            if ($count > 0) {
+                $notifications[] = [
+                    'icon' => 'fa-envelope',
+                    'color' => 'primary',
+                    'message' => "Ada $count surat masuk menunggu verifikasi",
+                    'meta' => date('H:i') . ' WIB',
+                    'url' => base_url('pengajuansuratmasuk')
+                ];
+            }
+        } elseif ($level === 'kepala') {
+            // Surat masuk yang sudah diverifikasi tapi belum disetujui kepala
+            $count = $this->m_surat
+                ->where([
+                    'status' => 'proses',
+                    'status_cd' => 'normal',
+                    'tipe' => 'suratmasuk'
+                ])
+                ->countAllResults();
+            if ($count > 0) {
+                $notifications[] = [
+                    'icon' => 'fa-envelope-open',
+                    'color' => 'success',
+                    'message' => "Ada $count surat masuk menunggu persetujuan",
+                    'meta' => date('H:i') . ' WIB',
+                    'url' => base_url('verifikasisuratmasuk')
+                ];
+            }
+        }
 
-
-
-
+        return $this->response->setJSON([
+            'count' => count($notifications),
+            'notifications' => $notifications
+        ]);
+    }
 }
